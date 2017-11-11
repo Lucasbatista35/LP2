@@ -2,41 +2,47 @@
 #include <stdlib.h>
 #include <string.h>
 
-int main()
+void Palindromo(char strings[])
 {
-    int i,j,k;
-    char strings[3][81];
-    char key[]={'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
-    int frequencia[25];
-    for(k=0;k<=25;k++)
-    {
-        frequencia[k]=0;
-    }
-    for(i=0;i<3;i++)
-    {
 
-        scanf("%s",&strings[i]);
-        strlwr(strings[i]);
-    }
-    for(i=0;i<3;i++)
+    int l = 0;
+    int h = strlen(strings) - 1;
+
+
+    while (h > l)
     {
-        for(j=0;j<strlen(strings[i]);j++)
+        if (strings[l++] == strings[h--])
         {
-            for(k=0;k<=25;k++)
-            {
-                if(strings[i][j]==key[k])
-                {
-                    frequencia[k]++;
-                }
-            }
+            printf("%s",strings);
+            return;
         }
     }
-    for(k=0;k<=25;k++)
-    {
-        printf("%c:%d\n",key[k],frequencia[k]);
-    }
-
-    return 0;
 
 }
 
+int main()
+{
+    int x,i,num;
+    num=0;
+
+    scanf("%d",&x);
+
+    if (x>=0)
+    {
+       char strings[x][81];
+
+        for(i=0;i<x;i++)
+        {
+            scanf("\n%s",strings[i]);
+            strupr(strings[i]);
+            printf("%s\n%d\n",strings[i],strlen(strings[i]));
+        }
+
+        for(i=0;i<x;i++)
+        {
+            Palindromo(strings[i]);
+        }
+    }
+
+   return 0;
+}
