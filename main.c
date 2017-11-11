@@ -13,7 +13,7 @@ void Palindromo(char strings[])
     {
         if (strings[l++] == strings[h--])
         {
-            printf("%s",strings);
+            printf("%s\n",strings);
             return;
         }
     }
@@ -22,26 +22,55 @@ void Palindromo(char strings[])
 
 int main()
 {
-    int x,i,num;
+    int x,i,j,k,num;
     num=0;
 
     scanf("%d",&x);
 
     if (x>=0)
     {
-       char strings[x][81];
+        char strings[x][81];
+        char key[]={'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+        int frequencia[25];
 
-        for(i=0;i<x;i++)
+        for(k=0;k<=25;k++)
+    {
+        frequencia[k]=0;
+    }
+    for(i=0;i<x;i++)
+    {
+
+        scanf("%s",&strings[i]);
+        strlwr(strings[i]);
+    }
+    for(i=0;i<x;i++)
+    {
+        for(j=0;j<strlen(strings[i]);j++)
         {
-            scanf("\n%s",strings[i]);
-            strupr(strings[i]);
-            printf("%s\n%d\n",strings[i],strlen(strings[i]));
+            for(k=0;k<=25;k++)
+            {
+                if(strings[i][j]==key[k])
+                {
+                    frequencia[k]++;
+                }
+            }
+        }
+    }
+    for(k=0;k<=25;k++)
+    {
+        if(frequencia[k]!= 0)
+        {
+             printf("%c:%d\n",key[k],frequencia[k]);
         }
 
-        for(i=0;i<x;i++)
-        {
-            Palindromo(strings[i]);
-        }
+    }
+
+
+
+    for(i=0;i<x;i++)
+    {
+        Palindromo(strings[i]);
+    }
     }
 
    return 0;
